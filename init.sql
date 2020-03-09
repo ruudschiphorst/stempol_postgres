@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS roles (id SERIAL PRIMARY KEY, rolename varchar(50), m
 ALTER TABLE shared_notes ADD COLUMN roleid integer REFERENCES roles(id);
 ALTER TABLE shared_notes ADD COLUMN is_deleted boolean DEFAULT false;
 ALTER TABLE multimedia ADD COLUMN is_deleted boolean DEFAULT false;
-ALTER TABLE shared_notes ADD COLUMN roleid integer REFERENCES roles(id);
 INSERT INTO roles (rolename, may_create, may_read, may_update, may_delete) VALUES ('admin', true, true, true, true);
 INSERT INTO roles (rolename, may_create, may_read, may_update, may_delete) VALUES ('reader', false, true, false, false);
 INSERT INTO roles (rolename, may_create, may_read, may_update, may_delete) VALUES ('writer', true, true, true, false);
