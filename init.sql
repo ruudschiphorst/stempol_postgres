@@ -1,4 +1,4 @@
-CREATE DATABASE stempol_notes;
+CREATE DATABASE IF NOT EXISTS stempol_notes;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 CREATE TABLE IF NOT EXISTS notes(id SERIAL, noteID UUID DEFAULT public.uuid_generate_v4(), title varchar(40) NOT NULL CHECK (title <> ''), note_text text, version integer, owner varchar(20), created_by varchar(20), generated_at timestamp DEFAULT now(), is_public boolean DEFAULT true, is_deleted boolean DEFAULT false, grondslag integer DEFAULT 8, autorisatieniveau numeric(2), afhandelcode integer DEFAULT 11, PRIMARY KEY (noteID, version));
 CREATE TABLE IF NOT EXISTS multimedia (id SERIAL PRIMARY KEY, multimediaID UUID DEFAULT public.uuid_generate_v4() NOT NULL, title varchar(40) NOT NULL CHECK (title <> ''), filepath varchar(250), filetype varchar(40), noteID UUID NOT NULL REFERENCES notes (noteID) UNIQUE (multimediaID));
